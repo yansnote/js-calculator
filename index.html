@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <title>Calculator</title>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: calc(16px + 0.390625vw);
+            margin: 0;
+        }
+        main {
+            width: 100%;
+            height: 100vh;
+        }
+        .calculator {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 5fr repeat(5, 2fr);
+            gap: 1px;
+            background-color: #FBAB7E;
+            background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+        }
+        .calculator * {
+            font-family: inherit;
+        }
+        .console {
+            grid-column-start: 1;
+            grid-column-end: 5;
+            align-self: end;
+            padding-bottom: 10px;
+        }
+        .console * {
+            color: #ffffff;
+            text-align: right;
+        }
+        #display {
+            width: 100%;
+            border: none;
+            background: none;
+            outline: none;
+            font-size: 2.2em;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .btn {
+            border: none;
+            background: none;
+            font-size: inherit;
+            background: #ffffff;
+            color: #160000;
+        }
+        .btn:hover {
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .btn:active {
+            background: rgba(255, 255, 255, 0.7);
+        }
+        .btn:last-child {
+            grid-column-start: 3;
+            grid-column-end: 5;
+        }
+        .clear, .del {
+            color: #e76d2a;
+        }
+
+        @media screen and (min-width: 480px) {
+            body {
+                background-color: #FBAB7E;
+                background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+            }
+            main {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .calculator {
+                width: 340px;
+                height: 650px;
+                border-radius: 10px;
+                box-shadow: 0 0 9px rgba(130, 130, 130, 0.4);
+                overflow: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="calculator">
+            <div class="console">
+                <input type="text" name="display" id="display" maxlength="11">
+            </div>
+            <button class="btn clear">AC</button>
+            <button class="btn del">&larr;</button>
+            <button class="btn">%</button>
+            <button class="btn">&#247;</button>
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+            <button class="btn">&#215;</button>
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+            <button class="btn">6</button>
+            <button class="btn">-</button>
+            <button class="btn">7</button>
+            <button class="btn">8</button>
+            <button class="btn">9</button>
+            <button class="btn">+</button>
+            <button class="btn">.</button>
+            <button class="btn">0</button>
+            <button class="btn">=</button>
+        </div>
+    </main>
+</body>
+</html>
