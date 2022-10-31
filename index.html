@@ -38,7 +38,7 @@
             grid-column-start: 1;
             grid-column-end: 5;
             align-self: end;
-            padding-bottom: 10px;
+            padding-bottom: 20px;
         }
         .console * {
             color: #ffffff;
@@ -86,7 +86,7 @@
                 justify-content: center;
             }
             .calculator {
-                width: 340px;
+                width: 350px;
                 height: 650px;
                 border-radius: 10px;
                 box-shadow: 0 0 9px rgba(130, 130, 130, 0.4);
@@ -99,28 +99,145 @@
     <main>
         <div class="calculator">
             <div class="console">
-                <input type="text" name="display" id="display" maxlength="11">
+                <input type="text" name="display" id="display" maxlength="11" disabled value="0">
             </div>
-            <button class="btn clear">AC</button>
-            <button class="btn del">&larr;</button>
+            <button class="btn clear" data-type="clear">AC</button>
+            <button class="btn del" data-type="del">&larr;</button>
             <button class="btn">%</button>
-            <button class="btn">&#247;</button>
-            <button class="btn">1</button>
-            <button class="btn">2</button>
-            <button class="btn">3</button>
-            <button class="btn">&#215;</button>
-            <button class="btn">4</button>
-            <button class="btn">5</button>
-            <button class="btn">6</button>
-            <button class="btn">-</button>
-            <button class="btn">7</button>
-            <button class="btn">8</button>
-            <button class="btn">9</button>
-            <button class="btn">+</button>
-            <button class="btn">.</button>
-            <button class="btn">0</button>
-            <button class="btn">=</button>
+            <button class="btn" data-value="/" data-type="operator">&#247;</button>
+            <button class="btn numb" data-value="1" data-type="number">1</button>
+            <button class="btn numb" data-value="2" data-type="number">2</button>
+            <button class="btn numb" data-value="3" data-type="number">3</button>
+            <button class="btn" data-value="*" data-type="operator">&#215;</button>
+            <button class="btn numb" data-value="4" data-type="number">4</button>
+            <button class="btn numb" data-value="5" data-type="number">5</button>
+            <button class="btn numb" data-value="6" data-type="number">6</button>
+            <button class="btn" data-value="-" data-type="operator">-</button>
+            <button class="btn numb" data-value="7" data-type="number">7</button>
+            <button class="btn numb" data-value="8" data-type="number">8</button>
+            <button class="btn numb" data-value="9" data-type="number">9</button>
+            <button class="btn" data-value="+" data-type="operator">+</button>
+            <button class="btn" data-value="." data-type="number">.</button>
+            <button class="btn numb" data-value="0" data-type="number">0</button>
+            <button class="btn" data-type="result">=</button>
         </div>
     </main>
+
+    <script>
+        const display = document.getElementById('display')
+
+        var variableOne = 0
+        var variableTwo = 0
+        
+        var forShow = ''
+        var recent = ''
+
+        var buffer = 0
+        var digit = 0
+        var operation = ''
+        var operator = null
+
+        document.querySelectorAll('.btn').forEach(elem => {
+            elem.addEventListener('click', event => {
+
+                switch(elem.dataset.type) {
+                    case 'number':
+                        handleNumb(elem)
+                        break
+                    
+                    case 'clear':
+                        clear()
+                        break
+
+                    case 'del':
+                        digit = digit.toString().slice(0, digit.toString().length - 1)
+                        output()
+                        break
+
+                    case 'operator':
+                        operator = elem.dataset.value
+                        break
+
+                    case 'result':
+                        calculate()
+                        break
+                }
+
+            })
+        })
+
+        function handleNumb(elem) {
+            if (operator) {
+                variableTwo = parseFloat(variableTwo.toString() + elem.dataset.value.toString())
+            } else {
+                variableOne = parseFloat(variableOne.toString() + elem.dataset.value.toString())
+            }
+
+            forShow = forShow.toString() + elem.dataset.value.toString()
+
+            console.log('variableOne => ', variableOne)
+            console.log('variableTwo => ', variableTwo)
+
+            output()
+        }
+
+        function handleOperator(elem) {
+            operator = elem.dataset.value
+        }
+
+        function calculate() {
+            if (!operator) {
+                console.warning('There is no operator!')
+                return
+            }
+
+            switch (operator) {
+                case '+':
+                    sum()
+                    break
+                
+                case '-':
+                    subtract()
+                    break
+
+                case '*':
+                    multiply()
+                    break
+
+                case '/':
+                    devide()
+                    break
+            }
+        }
+
+        function sum() {
+            console.log('The sum function')
+        }
+        
+        function multiply() {
+            console.log('The multiply function')
+        }
+
+        function devide() {
+            console.log('The devide function')
+        }
+
+        function subtract() {
+            console.log('The subtract function')
+        }
+
+        function clear() {
+            variableOne = 0
+            variableTwo = 0
+            operator = null
+            forShow = ''
+            recent = ''
+            output()
+        }
+
+        function output() {
+            display.value = forShow
+        }
+    </script>
 </body>
 </html>
