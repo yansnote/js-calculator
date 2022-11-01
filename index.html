@@ -99,6 +99,7 @@
     <main>
         <div class="calculator">
             <div class="console">
+                <div class="recent"></div>
                 <input type="text" name="display" id="display" maxlength="11" disabled value="0">
             </div>
             <button class="btn clear" data-type="clear">AC</button>
@@ -122,122 +123,6 @@
             <button class="btn" data-type="result">=</button>
         </div>
     </main>
-
-    <script>
-        const display = document.getElementById('display')
-
-        var variableOne = 0
-        var variableTwo = 0
-        
-        var forShow = ''
-        var recent = ''
-
-        var buffer = 0
-        var digit = 0
-        var operation = ''
-        var operator = null
-
-        document.querySelectorAll('.btn').forEach(elem => {
-            elem.addEventListener('click', event => {
-
-                switch(elem.dataset.type) {
-                    case 'number':
-                        handleNumb(elem)
-                        break
-                    
-                    case 'clear':
-                        clear()
-                        break
-
-                    case 'del':
-                        digit = digit.toString().slice(0, digit.toString().length - 1)
-                        output()
-                        break
-
-                    case 'operator':
-                        operator = elem.dataset.value
-                        break
-
-                    case 'result':
-                        calculate()
-                        break
-                }
-
-            })
-        })
-
-        function handleNumb(elem) {
-            if (operator) {
-                variableTwo = parseFloat(variableTwo.toString() + elem.dataset.value.toString())
-            } else {
-                variableOne = parseFloat(variableOne.toString() + elem.dataset.value.toString())
-            }
-
-            forShow = forShow.toString() + elem.dataset.value.toString()
-
-            console.log('variableOne => ', variableOne)
-            console.log('variableTwo => ', variableTwo)
-
-            output()
-        }
-
-        function handleOperator(elem) {
-            operator = elem.dataset.value
-        }
-
-        function calculate() {
-            if (!operator) {
-                console.warning('There is no operator!')
-                return
-            }
-
-            switch (operator) {
-                case '+':
-                    sum()
-                    break
-                
-                case '-':
-                    subtract()
-                    break
-
-                case '*':
-                    multiply()
-                    break
-
-                case '/':
-                    devide()
-                    break
-            }
-        }
-
-        function sum() {
-            console.log('The sum function')
-        }
-        
-        function multiply() {
-            console.log('The multiply function')
-        }
-
-        function devide() {
-            console.log('The devide function')
-        }
-
-        function subtract() {
-            console.log('The subtract function')
-        }
-
-        function clear() {
-            variableOne = 0
-            variableTwo = 0
-            operator = null
-            forShow = ''
-            recent = ''
-            output()
-        }
-
-        function output() {
-            display.value = forShow
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
