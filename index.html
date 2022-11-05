@@ -44,6 +44,9 @@
             color: #ffffff;
             text-align: right;
         }
+        .recent {
+            padding: 0 15px;
+        }
         #display {
             width: 100%;
             border: none;
@@ -100,11 +103,11 @@
         <div class="calculator">
             <div class="console">
                 <div class="recent"></div>
-                <input type="text" name="display" id="display" maxlength="11" disabled value="0">
+                <input type="text" name="display" id="display" maxlength="7" disabled value="0">
             </div>
             <button class="btn clear" data-type="clear">AC</button>
             <button class="btn del" data-type="del">&larr;</button>
-            <button class="btn">%</button>
+            <button class="btn" data-type="percent">%</button>
             <button class="btn" data-value="/" data-type="operator">&#247;</button>
             <button class="btn numb" data-value="1" data-type="number">1</button>
             <button class="btn numb" data-value="2" data-type="number">2</button>

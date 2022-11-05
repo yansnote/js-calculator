@@ -1,6 +1,8 @@
 var dispaly = document.getElementById('display')
+var recentDisplay = document.querySelector('.recent')
 
 var view = 0
+var recent = ''
 
 var variableOne = null
 var variableTwo = null
@@ -17,6 +19,10 @@ document.querySelectorAll('.btn').forEach(elem => {
 
       case 'operator':
         handleOperator(elem.dataset.value)
+        break
+
+      case 'percent':
+        handlePercent()
         break
 
       case 'clear':
@@ -39,6 +45,7 @@ document.querySelectorAll('.btn').forEach(elem => {
 
 function handleClear() {
   view = 0
+  recent = ''
 
   variableOne = null
   variableTwo = null
@@ -110,6 +117,15 @@ function handleResult() {
   next = true
 }
 
+function handlePercent() {
+  if (!variableTwo || !operator) {
+    return
+  }
+
+  variableTwo = (variableTwo / 100) * variableOne
+  view = variableTwo
+}
+
 function handleOperator(args) {
   next = true
   operator = args
@@ -124,6 +140,17 @@ function handleOperator(args) {
 function show() {
   if (view[view.toString().length - 1] != '.') {
     view = parseFloat(view)
+  }
+
+  if (!next) {
+    recent = variableOne ? variableOne.toString() : ''
+    recent += operator ? ' ' + operator + ' ' : ''
+    recent += variableTwo ? variableTwo : ''
+
+    const node = document.createElement('small')
+    const textNode = document.createTextNode(recent)
+
+    recentDisplay.innerHTML = `<small>${recent}</small>`
   }
 
   dispaly.value = view
