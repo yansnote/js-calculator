@@ -8,6 +8,7 @@ var variableOne = null
 var variableTwo = null
 var operator = null
 var next = false
+var hitResult = false
 
 document.querySelectorAll('.btn').forEach(elem => {
   elem.addEventListener('click', event => {
@@ -114,7 +115,7 @@ function handleResult() {
   view = result
   variableOne = result
   variableTwo = null
-  next = true
+  hitResult = true
 }
 
 function handlePercent() {
@@ -142,16 +143,17 @@ function show() {
     view = parseFloat(view)
   }
 
-  if (!next) {
+  if (!hitResult) {
     recent = variableOne ? variableOne.toString() : ''
     recent += operator ? ' ' + operator + ' ' : ''
     recent += variableTwo ? variableTwo : ''
+  } else {
+    recent += ' ='
 
-    const node = document.createElement('small')
-    const textNode = document.createTextNode(recent)
-
-    recentDisplay.innerHTML = `<small>${recent}</small>`
+    hitResult = false
   }
+
+  recentDisplay.innerHTML = `<small>${recent}</small>`
 
   dispaly.value = view
 }
