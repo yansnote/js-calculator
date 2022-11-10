@@ -12,7 +12,7 @@
     <title>Calculator</title>
 
     <style>
-        body {
+        body, button {
             font-family: 'Poppins', sans-serif;
             font-size: calc(16px + 0.390625vw);
             margin: 0;
@@ -31,16 +31,13 @@
             background-color: #FBAB7E;
             background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
         }
-        .calculator * {
-            font-family: inherit;
-        }
         .console {
             grid-column-start: 1;
             grid-column-end: 5;
             align-self: end;
             padding-bottom: 20px;
         }
-        .console * {
+        .console {
             color: #ffffff;
             text-align: right;
         }
@@ -55,6 +52,11 @@
             font-size: 2.2em;
             padding: 10px;
             box-sizing: border-box;
+        }
+        #display p {
+            padding: 0;
+            margin: 0;
+            word-wrap: break-word;
         }
         .btn {
             border: none;
@@ -74,7 +76,7 @@
             grid-column-start: 3;
             grid-column-end: 5;
         }
-        .clear, .del {
+        .action {
             color: #e76d2a;
         }
 
@@ -103,26 +105,26 @@
         <div class="calculator">
             <div class="console">
                 <div class="recent"></div>
-                <input type="text" name="display" id="display" maxlength="7" disabled value="0">
+                <div id="display"></div>
             </div>
-            <button class="btn clear" data-type="clear">AC</button>
-            <button class="btn del" data-type="del">&larr;</button>
+            <button class="btn action" data-type="clear">AC</button>
+            <button class="btn action" data-type="del">&larr;</button>
             <button class="btn" data-type="percent">%</button>
             <button class="btn" data-value="/" data-type="operator">&#247;</button>
-            <button class="btn numb" data-value="1" data-type="number">1</button>
-            <button class="btn numb" data-value="2" data-type="number">2</button>
-            <button class="btn numb" data-value="3" data-type="number">3</button>
+            <button class="btn" data-value="1" data-type="number">1</button>
+            <button class="btn" data-value="2" data-type="number">2</button>
+            <button class="btn" data-value="3" data-type="number">3</button>
             <button class="btn" data-value="*" data-type="operator">&#215;</button>
-            <button class="btn numb" data-value="4" data-type="number">4</button>
-            <button class="btn numb" data-value="5" data-type="number">5</button>
-            <button class="btn numb" data-value="6" data-type="number">6</button>
+            <button class="btn" data-value="4" data-type="number">4</button>
+            <button class="btn" data-value="5" data-type="number">5</button>
+            <button class="btn" data-value="6" data-type="number">6</button>
             <button class="btn" data-value="-" data-type="operator">-</button>
-            <button class="btn numb" data-value="7" data-type="number">7</button>
-            <button class="btn numb" data-value="8" data-type="number">8</button>
-            <button class="btn numb" data-value="9" data-type="number">9</button>
+            <button class="btn" data-value="7" data-type="number">7</button>
+            <button class="btn" data-value="8" data-type="number">8</button>
+            <button class="btn" data-value="9" data-type="number">9</button>
             <button class="btn" data-value="+" data-type="operator">+</button>
             <button class="btn" data-value="." data-type="number">.</button>
-            <button class="btn numb" data-value="0" data-type="number">0</button>
+            <button class="btn" data-value="0" data-type="number">0</button>
             <button class="btn" data-type="result">=</button>
         </div>
     </main>
